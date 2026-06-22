@@ -34,7 +34,7 @@ function TransformCard({ item }: { item: TransformItem }) {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group relative overflow-hidden aspect-[9/16] border border-gold/15 shadow-2xl bg-black cursor-pointer"
+      className="group relative overflow-hidden aspect-[9/16] border border-gold/15 shadow-2xl bg-black cursor-pointer w-full"
     >
       {item.type === "image" ? (
         <Image
@@ -43,7 +43,7 @@ function TransformCard({ item }: { item: TransformItem }) {
           fill
           unoptimized
           className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          sizes="(max-width: 768px) 80vw, 25vw"
         />
       ) : (
         <div className="relative w-full h-full">
@@ -126,7 +126,7 @@ export default function Transformations() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
             REAL TRANSFORMATIONS
           </span>
@@ -136,8 +136,24 @@ export default function Transformations() {
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
-        {/* Visual Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-6xl mx-auto">
+        {/* 1. MOBILE ONLY VIEW: Horizontal Swipeable Carousel */}
+        <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory pb-6 scrollbar-none">
+          {items.map((item, idx) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, x: 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="w-[260px] flex-shrink-0 snap-start"
+            >
+              <TransformCard item={item} />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* 2. DESKTOP ONLY VIEW: Regular Grid */}
+        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-6xl mx-auto">
           {items.map((item, idx) => (
             <motion.div
               key={item.title}
@@ -152,7 +168,7 @@ export default function Transformations() {
         </div>
 
         {/* Bottom Call to Action */}
-        <div className="text-center">
+        <div className="text-center mt-6">
           <a
             href={whatsappUrl}
             target="_blank"

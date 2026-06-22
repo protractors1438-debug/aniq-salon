@@ -17,7 +17,8 @@ type ServiceCategory = {
 };
 
 export default function Services() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  // Default to hair on mobile so there's always an active list showing under the tabs
+  const [activeCategory, setActiveCategory] = useState<string | null>("hair");
 
   const categories: ServiceCategory[] = [
     {
@@ -144,6 +145,8 @@ export default function Services() {
     setActiveCategory(activeCategory === categoryId ? null : categoryId);
   };
 
+  const currentCategory = categories.find((c) => c.id === activeCategory) || categories[0];
+
   const getWhatsAppLink = (title: string) => {
     return `https://wa.me/918522942128?text=Hi%20ANIQ%20Salon,%20I%20would%20like%20to%20book%20an%20appointment%20for%20${encodeURIComponent(title)}.`;
   };
@@ -156,7 +159,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
             SERVICES & CATALOGUE
           </span>
@@ -166,8 +169,76 @@ export default function Services() {
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
-        {/* Categories Grid with Stagger Reveal */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* 1. MOBILE ONLY VIEW: Horizontal Tabs + Active Table list */}
+        <div className="md:hidden flex flex-col max-w-xl mx-auto">
+          {/* Horizontal Scroll tab strip */}
+          <div className="flex overflow-x-auto gap-3 pb-4 scrollbar-none snap-x snap-mandatory scroll-smooth border-b border-gold/10">
+            {categories.map((category) => {
+              const isActive = activeCategory === category.id;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`flex-shrink-0 snap-start flex items-center gap-2 px-4 py-3 border text-[10px] font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? "bg-gold border-gold text-primary shadow-lg shadow-gold/15"
+                      : "bg-secondary-black border-gold/15 text-cream"
+                  }`}
+                >
+                  {category.icon}
+                  <span>{category.title}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Render Active Category List below */}
+          <motion.div
+            key={currentCategory.id}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mt-6 bg-secondary-black border border-gold/15 p-6 relative"
+          >
+            {/* Decorative gold highlights */}
+            <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-gold/25" />
+            <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-gold/25" />
+
+            <h3 className="font-serif text-base font-bold text-gold uppercase tracking-widest border-b border-gold/10 pb-2 mb-4 flex items-center gap-2">
+              {currentCategory.icon}
+              {currentCategory.title}
+            </h3>
+
+            <div className="space-y-4">
+              {currentCategory.items.map((item, idx) => (
+                <div key={idx} className="flex justify-between items-end gap-2 py-1 border-b border-gold/5">
+                  <span className="text-xs font-sans font-medium text-cream/90">
+                    {item.name}
+                  </span>
+                  <div className="flex-1 border-b border-dotted border-gold/25 mx-2 mb-1" />
+                  <span className="text-xs font-serif font-bold text-gold">
+                    {item.price}
+                  </span>
+                </div>
+              ))}
+
+              <div className="pt-4">
+                <a
+                  href={getWhatsAppLink(currentCategory.title)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-gold text-primary font-bold text-[10px] uppercase tracking-widest transition-all duration-300 shadow-md shadow-gold/15"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                  Book {currentCategory.title}
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* 2. DESKTOP ONLY VIEW: 3-column accordion grid */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {categories.map((category, index) => {
             const isActive = activeCategory === category.id;
 
@@ -187,7 +258,6 @@ export default function Services() {
                 <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-gold/20" />
 
                 <div>
-                  {/* Header & Icon Trigger (NO Category Images) */}
                   <button
                     onClick={() => handleToggle(category.id)}
                     className="w-full flex items-center justify-between py-2 cursor-pointer text-left focus:outline-none"
@@ -210,7 +280,7 @@ export default function Services() {
                   </button>
                 </div>
 
-                {/* Accordion Expansion Panel */}
+                {/* Accordion Panel */}
                 <AnimatePresence initial={false}>
                   {isActive && (
                     <motion.div
@@ -226,7 +296,6 @@ export default function Services() {
                             <span className="text-xs sm:text-sm font-sans font-medium text-cream/90 group-hover:text-gold transition-colors duration-300">
                               {item.name}
                             </span>
-                            {/* Gold Dotted divider line */}
                             <div className="flex-1 border-b border-dotted border-gold/25 mx-2 mb-1" />
                             <span className="text-xs sm:text-sm font-serif font-bold text-gold">
                               {item.price}
@@ -234,7 +303,6 @@ export default function Services() {
                           </div>
                         ))}
 
-                        {/* WhatsApp CTA inside accordion */}
                         <div className="pt-4 flex justify-center">
                           <a
                             href={getWhatsAppLink(category.title)}

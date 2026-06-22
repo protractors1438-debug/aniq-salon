@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Play } from "lucide-react";
 import { useRef, useState } from "react";
 
@@ -17,6 +17,7 @@ type GalleryItem = {
 export default function Gallery() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showAllMobile, setShowAllMobile] = useState(false);
 
   const handleMouseEnter = () => {
     if (videoRef.current) {
@@ -90,15 +91,17 @@ export default function Gallery() {
     },
   ];
 
+  const mobileVisibleItems = showAllMobile ? mediaItems : mediaItems.slice(0, 3);
+
   return (
     <section id="gallery" className="py-20 bg-primary text-cream relative overflow-hidden border-t border-gold/15">
-      {/* Background glow */}
+      {/* Background vector glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
             PORTFOLIO
           </span>
@@ -108,8 +111,68 @@ export default function Gallery() {
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
-        {/* Pinterest Masonry columns layout */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 max-w-6xl mx-auto">
+        {/* 1. MOBILE ONLY VIEW: Collapsible 3-item list */}
+        <div className="md:hidden flex flex-col max-w-xl mx-auto">
+          <div className="columns-1 gap-6 space-y-6">
+            {mobileVisibleItems.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={`break-inside-avoid group relative overflow-hidden border border-gold/15 bg-secondary-black shadow-2xl mb-6 cursor-pointer ${item.aspectClass} ${item.shapeClass}`}
+                onMouseEnter={item.type === "video" ? handleMouseEnter : undefined}
+                onMouseLeave={item.type === "video" ? handleMouseLeave : undefined}
+              >
+                {item.type === "image" ? (
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="100vw"
+                  />
+                ) : (
+                  <div className="relative w-full h-full">
+                    <video
+                      ref={videoRef}
+                      src={item.src}
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {!isPlaying && (
+                      <div className="absolute top-4 right-4 z-20 p-2 bg-gold text-primary rounded-full border border-gold/20 shadow-md">
+                        <Play className="w-3.5 h-3.5 fill-current" />
+                      </div>
+                    )}
+                  </div>
+                )}
+                <div className="absolute inset-4 border border-gold/0 group-hover:border-gold/30 transition-all duration-500 z-20 pointer-events-none" />
+                <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/50 transition-colors duration-500 z-10" />
+                <div className="absolute inset-x-0 bottom-0 p-5 z-20 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <span className="text-[9px] tracking-widest uppercase text-gold font-bold block mb-0.5">ANIQ ANNOJIGUDA</span>
+                  <p className="font-serif text-sm font-bold text-cream">{item.caption}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Gold Show All / Show Less Toggle Button */}
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => setShowAllMobile(!showAllMobile)}
+              className="px-6 py-3 border border-gold text-gold text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-primary transition-all duration-300 cursor-pointer w-full text-center"
+            >
+              {showAllMobile ? "Show Less Photos" : "Show All Photos"}
+            </button>
+          </div>
+        </div>
+
+        {/* 2. DESKTOP ONLY VIEW: Pinterest Masonry columns layout (All 7 items) */}
+        <div className="hidden md:block columns-2 lg:columns-3 gap-6 space-y-6 max-w-6xl mx-auto">
           {mediaItems.map((item, idx) => (
             <motion.div
               key={idx}
@@ -128,7 +191,7 @@ export default function Gallery() {
                   fill
                   unoptimized
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 1024px) 50vw, 33vw"
                 />
               ) : (
                 <div className="relative w-full h-full">
@@ -140,7 +203,6 @@ export default function Gallery() {
                     playsInline
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* Play icon badge */}
                   {!isPlaying && (
                     <div className="absolute top-4 right-4 z-20 p-2 bg-gold text-primary rounded-full border border-gold/20 shadow-md">
                       <Play className="w-3.5 h-3.5 fill-current" />
@@ -149,13 +211,8 @@ export default function Gallery() {
                 </div>
               )}
 
-              {/* Inner gold frame outline on hover */}
               <div className="absolute inset-4 border border-gold/0 group-hover:border-gold/30 transition-all duration-500 z-20 pointer-events-none" />
-
-              {/* Dark Hover Overlay */}
               <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/50 transition-colors duration-500 z-10" />
-
-              {/* Caption Overlay */}
               <div className="absolute inset-x-0 bottom-0 p-5 z-20 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <span className="text-[9px] tracking-widest uppercase text-gold font-bold block mb-0.5">
                   ANIQ ANNOJIGUDA
