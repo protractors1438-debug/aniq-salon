@@ -3,109 +3,115 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+
+type GalleryItem = {
+  type: "video" | "image";
+  src: string;
+  alt: string;
+  caption: string;
+  aspectClass: string;
+};
 
 export default function Gallery() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const handleVideoHoverStart = () => {
+  const handleMouseEnter = () => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
     }
   };
 
-  const handleVideoHoverEnd = () => {
+  const handleMouseLeave = () => {
     if (videoRef.current) {
       videoRef.current.pause();
+      setIsPlaying(false);
     }
   };
 
-  const mediaItems = [
+  const mediaItems: GalleryItem[] = [
     {
       type: "video",
       src: "/assets/salon-intro.mp4",
       alt: "ANIQ Salon Video Tour",
       caption: "Experience ANIQ (Video Tour)",
-      sizeClass: "md:col-span-2 aspect-[16/10] md:h-[300px]",
+      aspectClass: "aspect-video",
     },
     {
       type: "image",
       src: "/assets/gallery-1.jpg",
       alt: "ANIQ Salon Pedicure Hair Wash Station",
       caption: "Pedicure & Hair Wash Lounge",
-      sizeClass: "aspect-square h-full",
+      aspectClass: "aspect-[4/5]",
     },
     {
       type: "image",
       src: "/assets/gallery-2.jpg",
       alt: "ANIQ Salon Hair Styling Stations",
       caption: "Gold-backlit Styling Station",
-      sizeClass: "aspect-square h-full",
+      aspectClass: "aspect-square",
     },
     {
       type: "image",
       src: "/assets/gallery-3.jpg",
       alt: "ANIQ Salon Kids Styling Mirror",
       caption: "Kids Grooming Mirrors",
-      sizeClass: "aspect-square h-full",
+      aspectClass: "aspect-[4/3]",
     },
     {
       type: "image",
       src: "/assets/gallery-4.jpg",
       alt: "ANIQ Salon Kids Car Grooming Chair",
       caption: "Fun Kids Styling Space",
-      sizeClass: "aspect-square h-full",
+      aspectClass: "aspect-[4/5]",
     },
     {
       type: "image",
       src: "/assets/gallery-5.jpg",
       alt: "ANIQ Salon Special Styling Tattoo Zone",
       caption: "Private Cut & Tattoo Zone",
-      sizeClass: "aspect-square h-full",
+      aspectClass: "aspect-[3/4]",
     },
     {
       type: "image",
       src: "/assets/exterior.jpg",
       alt: "ANIQ Salon Exterior Entrance",
       caption: "Our Exterior Frontage",
-      sizeClass: "aspect-square h-full",
-    },
-    {
-      type: "image",
-      src: "/assets/transformation-1.webp",
-      alt: "ANIQ Hair Treatment Smooth Styling",
-      caption: "Precision Styling Finish",
-      sizeClass: "aspect-square h-full",
+      aspectClass: "aspect-video",
     },
   ];
 
   return (
-    <section id="gallery" className="py-16 md:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="py-20 bg-charcoal text-cream relative overflow-hidden border-t border-gold/15">
+      {/* Background vector glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block mb-2">
-            Our Gallery
+        <div className="text-center mb-16">
+          <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
+            PORTFOLIO
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-cream uppercase">
             A Glimpse of Salon Luxury
           </h2>
-          <div className="w-12 h-[1px] bg-accent mx-auto mt-3" />
+          <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
-        {/* Masonry Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 auto-rows-fr max-w-5xl mx-auto">
+        {/* Pinterest Masonry columns layout */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 max-w-6xl mx-auto">
           {mediaItems.map((item, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className={`group relative overflow-hidden border border-primary/5 bg-ivory shadow-sm ${item.sizeClass}`}
-              onMouseEnter={item.type === "video" ? handleVideoHoverStart : undefined}
-              onMouseLeave={item.type === "video" ? handleVideoHoverEnd : undefined}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.08 }}
+              className={`break-inside-avoid group relative overflow-hidden border border-gold/15 bg-primary shadow-2xl mb-6 cursor-pointer ${item.aspectClass}`}
+              onMouseEnter={item.type === "video" ? handleMouseEnter : undefined}
+              onMouseLeave={item.type === "video" ? handleMouseLeave : undefined}
             >
               {item.type === "image" ? (
                 <Image
@@ -127,24 +133,26 @@ export default function Gallery() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Play icon badge */}
-                  <div className="absolute top-4 right-4 z-20 p-2.5 bg-primary/80 backdrop-blur-sm text-accent rounded-full border border-accent/20">
-                    <Play className="w-4 h-4 fill-current" />
-                  </div>
+                  {!isPlaying && (
+                    <div className="absolute top-4 right-4 z-20 p-2 bg-gold text-primary rounded-full border border-gold/20 shadow-md">
+                      <Play className="w-3.5 h-3.5 fill-current" />
+                    </div>
+                  )}
                 </div>
               )}
 
               {/* Inner gold frame outline on hover */}
-              <div className="absolute inset-4 border border-accent/0 group-hover:border-accent/30 transition-all duration-500 z-20 pointer-events-none" />
+              <div className="absolute inset-4 border border-gold/0 group-hover:border-gold/30 transition-all duration-500 z-20 pointer-events-none" />
 
               {/* Dark Hover Overlay */}
-              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/40 transition-colors duration-500 z-10" />
+              <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/50 transition-colors duration-500 z-10" />
 
               {/* Caption Overlay */}
-              <div className="absolute inset-x-0 bottom-0 p-5 z-20 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <span className="text-[9px] tracking-widest uppercase text-accent font-semibold block mb-0.5">
+              <div className="absolute inset-x-0 bottom-0 p-5 z-20 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <span className="text-[9px] tracking-widest uppercase text-gold font-bold block mb-0.5">
                   ANIQ ANNOJIGUDA
                 </span>
-                <p className="font-serif text-sm font-bold text-white">
+                <p className="font-serif text-sm font-bold text-cream">
                   {item.caption}
                 </p>
               </div>

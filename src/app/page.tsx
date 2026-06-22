@@ -1,16 +1,20 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import About from "@/components/About";
+import BrandsWeUse from "@/components/BrandsWeUse";
 import Services from "@/components/Services";
 import Transformations from "@/components/Transformations";
-import Reviews from "@/components/Reviews";
+import PriceList from "@/components/PriceList";
+import VipMembership from "@/components/VipMembership";
+import StudentOffers from "@/components/StudentOffers";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import Gallery from "@/components/Gallery";
+import Reviews from "@/components/Reviews";
+import About from "@/components/About";
 import Location from "@/components/Location";
 import Contact from "@/components/Contact";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import QuickActions from "@/components/QuickActions";
 
 export default function Home() {
   return (
@@ -18,18 +22,22 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <WhyChooseUs />
-        <About />
+        <BrandsWeUse />
         <Services />
         <Transformations />
-        <Reviews />
+        <PriceList />
+        <VipMembership />
+        <StudentOffers />
+        <WhyChooseUs />
         <Gallery />
+        <Reviews />
+        <About />
         <Location />
         <Contact />
         <FinalCTA />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      <QuickActions />
     </>
   );
 }

@@ -15,19 +15,18 @@ type TransformItem = {
 
 function TransformCard({ item }: { item: TransformItem }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
     if (item.type === "video" && videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
     }
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
     if (item.type === "video" && videoRef.current) {
       videoRef.current.pause();
+      setIsPlaying(false);
     }
   };
 
@@ -35,7 +34,7 @@ function TransformCard({ item }: { item: TransformItem }) {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group relative overflow-hidden aspect-[9/16] border border-primary/5 shadow-md bg-black cursor-pointer"
+      className="group relative overflow-hidden aspect-[9/16] border border-gold/15 shadow-2xl bg-black cursor-pointer"
     >
       {item.type === "image" ? (
         <Image
@@ -57,30 +56,32 @@ function TransformCard({ item }: { item: TransformItem }) {
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           {/* Play/Hover indicator */}
-          <div className="absolute top-4 right-4 z-20 p-2 bg-primary/80 backdrop-blur-sm text-accent rounded-full border border-accent/20">
-            <Play className="w-3.5 h-3.5 fill-current" />
-          </div>
+          {!isPlaying && (
+            <div className="absolute top-4 right-4 z-20 p-2 bg-gold text-primary rounded-full border border-gold/20 shadow-md">
+              <Play className="w-3.5 h-3.5 fill-current" />
+            </div>
+          )}
         </div>
       )}
 
       {/* Gold Border Outline on hover */}
-      <div className="absolute inset-4 border border-accent/0 group-hover:border-accent/30 transition-all duration-500 z-20 pointer-events-none" />
+      <div className="absolute inset-4 border border-gold/0 group-hover:border-gold/30 transition-all duration-500 z-20 pointer-events-none" />
 
       {/* Cinematic Dark Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300 z-10" />
 
       {/* Text & Action */}
       <div className="absolute inset-x-0 bottom-0 p-5 z-20 flex flex-col justify-end h-1/2">
-        <span className="text-[9px] tracking-widest uppercase text-accent font-semibold mb-1">
+        <span className="text-[9px] tracking-widest uppercase text-gold font-bold mb-1">
           {item.category}
         </span>
-        <h3 className="font-serif text-sm sm:text-base font-bold text-white mb-1.5">
+        <h3 className="font-serif text-sm sm:text-base font-bold text-cream mb-1.5 uppercase tracking-wide">
           {item.title}
         </h3>
-        <p className="text-[11px] text-white/75 leading-relaxed font-light mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+        <p className="text-[11px] text-cream/75 leading-relaxed font-light mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
           {item.description}
         </p>
-        <div className="w-6 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
+        <div className="w-6 h-[1px] bg-gold group-hover:w-full transition-all duration-300" />
       </div>
     </div>
   );
@@ -121,18 +122,18 @@ export default function Transformations() {
   const whatsappUrl = "https://wa.me/918522942128?text=Hi%20ANIQ%20Salon%20Annojiguda,%20I%20would%20like%20to%20book%20a%20consultation%20for%20a%20transformation.";
 
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-ivory relative overflow-hidden border-t border-gold/15">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block mb-2">
-            Real Transformations
+        <div className="text-center mb-16">
+          <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
+            REAL TRANSFORMATIONS
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary uppercase tracking-wide">
             Real Transformations. Real Confidence.
           </h2>
-          <div className="w-12 h-[1px] bg-accent mx-auto mt-3" />
+          <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
         {/* Visual Grid */}
@@ -143,7 +144,7 @@ export default function Transformations() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
             >
               <TransformCard item={item} />
             </motion.div>
@@ -156,7 +157,7 @@ export default function Transformations() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3.5 bg-accent hover:bg-accent/90 text-primary font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-lg shadow-accent/20 cursor-pointer"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gold hover:bg-gold/90 text-primary font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-lg shadow-gold/20 cursor-pointer"
           >
             <MessageCircle className="w-4 h-4 fill-current" />
             Book Your Transformation Now

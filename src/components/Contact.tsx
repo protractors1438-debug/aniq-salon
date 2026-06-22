@@ -29,40 +29,40 @@ export default function Contact() {
       detail: "@aniqsalon_annojiguda",
       action: "Follow & DM Us",
       url: "https://www.instagram.com/aniqsalon_annojiguda",
-      icon: <InstagramIcon className="w-8 h-8 text-accent" />,
-      color: "hover:border-accent/40",
+      icon: <InstagramIcon className="w-6 h-6 text-gold" />,
+      color: "hover:border-gold/40",
     },
     {
       name: "WhatsApp",
       detail: "+91 8522942128",
       action: "Instant Booking",
       url: "https://wa.me/918522942128?text=Hi%20ANIQ%20Salon%20Annojiguda,%20I%20would%20like%20to%20book%20an%20appointment.",
-      icon: <MessageCircle className="w-8 h-8 text-accent fill-current" />,
-      color: "hover:border-accent/40",
+      icon: <MessageCircle className="w-6 h-6 text-gold fill-current" />,
+      color: "hover:border-gold/40",
     },
     {
       name: "Google Maps",
       detail: "Beside Sri Balaji Bakery",
       action: "Get Map Directions",
       url: "https://maps.app.goo.gl/T2S6M2FPc7sZ9Yp38",
-      icon: <MapPin className="w-8 h-8 text-accent" />,
-      color: "hover:border-accent/40",
+      icon: <MapPin className="w-6 h-6 text-gold" />,
+      color: "hover:border-gold/40",
     },
   ];
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section id="contact" className="py-20 bg-cream/30 relative overflow-hidden border-t border-gold/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block mb-2">
-            Get In Touch
+        <div className="text-center mb-16">
+          <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
+            GET IN TOUCH
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary uppercase tracking-wide">
             Connect With ANIQ Salon
           </h2>
-          <div className="w-12 h-[1px] bg-accent mx-auto mt-3" />
+          <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
         {/* Cards Grid */}
@@ -78,30 +78,34 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               whileHover={{ y: -6 }}
-              className={`bg-ivory p-6 border border-primary/5 shadow-sm transition-all duration-300 relative group flex flex-col justify-between items-center text-center cursor-pointer ${method.color}`}
+              className={`bg-white p-8 border border-gold/15 shadow-xl transition-all duration-300 relative group flex flex-col justify-between items-center text-center cursor-pointer ${method.color}`}
             >
+              {/* Decorative Corner borders */}
+              <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-gold/0 group-hover:border-gold/20 transition-all duration-300" />
+              <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-gold/0 group-hover:border-gold/20 transition-all duration-300" />
+              
               {/* Top accent border */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-accent transition-colors duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-gold transition-colors duration-300" />
               
               {/* Icon */}
-              <div className="mb-4 p-3 bg-white rounded-none group-hover:bg-accent/10 transition-colors duration-300">
+              <div className="mb-6 p-4 bg-cream/30 border border-gold/10 group-hover:bg-charcoal group-hover:border-gold/20 transition-all duration-300">
                 {method.icon}
               </div>
 
               {/* Name */}
-              <h3 className="font-serif text-base font-bold text-primary mb-1.5">
+              <h3 className="font-serif text-base font-bold text-primary mb-2 group-hover:text-gold transition-colors duration-300">
                 {method.name}
               </h3>
 
               {/* Detail */}
-              <p className="text-xs text-primary/70 mb-5 font-light">
+              <p className="text-xs text-primary/70 mb-6 font-light">
                 {method.detail}
               </p>
 
               {/* Action */}
-              <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-widest text-accent font-bold group-hover:text-primary transition-colors duration-300">
+              <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-gold font-bold group-hover:text-primary transition-colors duration-300">
                 {method.action}
-                <ArrowUpRight className="w-3 h-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                <ArrowUpRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
               </span>
             </motion.a>
           ))}
