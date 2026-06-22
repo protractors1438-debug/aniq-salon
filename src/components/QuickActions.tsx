@@ -61,7 +61,7 @@ export default function QuickActions() {
   return (
     <>
       {/* 1. Mobile Bottom Sticky Conversion Bar (Visible only on < lg screens) */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-charcoal/95 backdrop-blur-md border-t border-gold/20 lg:hidden shadow-2xl h-16 flex items-center justify-around px-2 pb-safe">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-secondary-black/95 backdrop-blur-md border-t border-gold/20 lg:hidden shadow-2xl h-16 flex items-center justify-around px-2 pb-safe">
         
         {/* Call Action */}
         <a 
@@ -134,7 +134,7 @@ export default function QuickActions() {
                   className="flex items-center gap-3 group cursor-pointer"
                 >
                   {/* Tooltip Label */}
-                  <span className="bg-charcoal text-cream text-[10px] tracking-widest font-bold uppercase py-2 px-3 shadow-lg border border-gold/15 rounded-none opacity-90 group-hover:opacity-100 transition-opacity">
+                  <span className="bg-secondary-black text-cream text-[10px] tracking-widest font-bold uppercase py-2 px-3 shadow-lg border border-gold/15 rounded-none opacity-90 group-hover:opacity-100 transition-opacity">
                     {action.name}
                   </span>
                   {/* Icon Round Button */}
@@ -164,7 +164,7 @@ export default function QuickActions() {
 
           {/* Quick Helper Tooltip on Hover */}
           {!isOpen && (
-            <span className="absolute right-16 bg-charcoal text-gold text-[10px] font-bold tracking-widest uppercase py-2.5 px-4 shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-gold/15">
+            <span className="absolute right-16 bg-secondary-black text-gold text-[10px] font-bold tracking-widest uppercase py-2.5 px-4 shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-gold/15">
               Book Appointment
             </span>
           )}

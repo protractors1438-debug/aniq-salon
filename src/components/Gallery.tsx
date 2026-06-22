@@ -11,6 +11,7 @@ type GalleryItem = {
   alt: string;
   caption: string;
   aspectClass: string;
+  shapeClass: string;
 };
 
 export default function Gallery() {
@@ -37,6 +38,7 @@ export default function Gallery() {
       alt: "ANIQ Salon Video Tour",
       caption: "Experience ANIQ (Video Tour)",
       aspectClass: "aspect-video",
+      shapeClass: "rounded-t-[80px] rounded-b-[20px]",
     },
     {
       type: "image",
@@ -44,6 +46,7 @@ export default function Gallery() {
       alt: "ANIQ Salon Pedicure Hair Wash Station",
       caption: "Pedicure & Hair Wash Lounge",
       aspectClass: "aspect-[4/5]",
+      shapeClass: "rounded-[120px_20px_120px_20px]",
     },
     {
       type: "image",
@@ -51,6 +54,7 @@ export default function Gallery() {
       alt: "ANIQ Salon Hair Styling Stations",
       caption: "Gold-backlit Styling Station",
       aspectClass: "aspect-square",
+      shapeClass: "rounded-t-full",
     },
     {
       type: "image",
@@ -58,6 +62,7 @@ export default function Gallery() {
       alt: "ANIQ Salon Kids Styling Mirror",
       caption: "Kids Grooming Mirrors",
       aspectClass: "aspect-[4/3]",
+      shapeClass: "rounded-[20px_120px_20px_120px]",
     },
     {
       type: "image",
@@ -65,6 +70,7 @@ export default function Gallery() {
       alt: "ANIQ Salon Kids Car Grooming Chair",
       caption: "Fun Kids Styling Space",
       aspectClass: "aspect-[4/5]",
+      shapeClass: "rounded-b-full",
     },
     {
       type: "image",
@@ -72,6 +78,7 @@ export default function Gallery() {
       alt: "ANIQ Salon Special Styling Tattoo Zone",
       caption: "Private Cut & Tattoo Zone",
       aspectClass: "aspect-[3/4]",
+      shapeClass: "rounded-[100px_20px_100px_20px]",
     },
     {
       type: "image",
@@ -79,12 +86,13 @@ export default function Gallery() {
       alt: "ANIQ Salon Exterior Entrance",
       caption: "Our Exterior Frontage",
       aspectClass: "aspect-video",
+      shapeClass: "rounded-t-[100px] rounded-b-[20px]",
     },
   ];
 
   return (
-    <section id="gallery" className="py-20 bg-charcoal text-cream relative overflow-hidden border-t border-gold/15">
-      {/* Background vector glow */}
+    <section id="gallery" className="py-20 bg-primary text-cream relative overflow-hidden border-t border-gold/15">
+      {/* Background glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -109,7 +117,7 @@ export default function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.08 }}
-              className={`break-inside-avoid group relative overflow-hidden border border-gold/15 bg-primary shadow-2xl mb-6 cursor-pointer ${item.aspectClass}`}
+              className={`break-inside-avoid group relative overflow-hidden border border-gold/15 bg-secondary-black shadow-2xl mb-6 cursor-pointer ${item.aspectClass} ${item.shapeClass}`}
               onMouseEnter={item.type === "video" ? handleMouseEnter : undefined}
               onMouseLeave={item.type === "video" ? handleMouseLeave : undefined}
             >

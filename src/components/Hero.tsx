@@ -1,32 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, Sparkles, Navigation } from "lucide-react";
-
-// Floating Gold Icons as elegant line art SVGs
-const ScissorsIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-16 h-16 text-gold opacity-15">
-    <circle cx="6" cy="6" r="3" />
-    <circle cx="6" cy="18" r="3" />
-    <line x1="20" y1="4" x2="8.12" y2="15.88" />
-    <line x1="14.47" y1="9.53" x2="20" y2="20" />
-    <line x1="8.12" y1="8.12" x2="12" y2="12" />
-  </svg>
-);
-
-const CombIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-20 h-10 text-gold opacity-15">
-    <path d="M2 4h20v6H2z" />
-    <path d="M4 10v10M8 10v10M12 10v10M16 10v10M20 10v10" />
-  </svg>
-);
-
-const MirrorIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-16 h-24 text-gold opacity-15">
-    <ellipse cx="12" cy="10" rx="8" ry="8" />
-    <path d="M12 18v4M8 22h8" />
-  </svg>
-);
+import { MessageCircle, Navigation, Star, MapPin, Award, Clock } from "lucide-react";
 
 export default function Hero() {
   const whatsappUrl = "https://wa.me/918522942128?text=Hi%20ANIQ%20Salon%20Annojiguda,%20I%20would%20like%20to%20book%20an%20appointment.";
@@ -40,64 +15,52 @@ export default function Hero() {
         muted
         playsInline
         className="absolute w-full h-full object-cover scale-[1.02]"
-        style={{ filter: "brightness(0.25)" }}
+        style={{ filter: "brightness(0.55)" }}
       >
         <source src="/assets/salon-intro.mp4" type="video/mp4" />
       </video>
 
-      {/* Luxury Cinematic Gradient & Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary/95 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent pointer-events-none" />
+      {/* Reduced overlay opacity (approx 40%) so the salon ambience is clearly visible */}
+      <div className="absolute inset-0 bg-primary/40 pointer-events-none z-10" />
+      
+      {/* Soft gradient fade at bottom to blend into sections */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary via-primary/50 to-transparent pointer-events-none z-10" />
 
-      {/* Gold Geometric Lines in Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 w-[2px] h-[30%] bg-gradient-to-b from-gold/30 to-transparent" />
-        <div className="absolute bottom-10 right-10 w-[2px] h-[30%] bg-gradient-to-t from-gold/30 to-transparent" />
-        <div className="absolute top-1/4 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
+      {/* Gold Accent Lines */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+        <div className="absolute top-[12%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
+        <div className="absolute bottom-[18%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
+        <div className="absolute top-10 left-10 w-[1px] h-[30%] bg-gradient-to-b from-gold/20 to-transparent" />
+        <div className="absolute bottom-10 right-10 w-[1px] h-[30%] bg-gradient-to-t from-gold/20 to-transparent" />
       </div>
 
-      {/* Floating Subtle Luxury Elements */}
+      {/* Subtle 3D-feeling Floating Elements (Gold Rings & Rotating Frames) */}
       <motion.div
-        animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[20%] left-[10%] pointer-events-none hidden md:block"
-      >
-        <ScissorsIcon />
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [0, 15, 0], rotate: [0, -5, 0] }}
+        animate={{ y: [0, -15, 0], rotate: [0, 15, 0], scale: [1, 1.05, 1] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[25%] left-[8%] pointer-events-none hidden md:block"
-      >
-        <MirrorIcon />
-      </motion.div>
-
+        className="absolute top-[22%] left-[10%] w-24 h-24 rounded-full border-2 border-gold/10 border-t-gold/30 pointer-events-none hidden md:block z-10"
+      />
       <motion.div
-        animate={{ y: [0, -10, 0], rotate: [0, 3, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[25%] right-[12%] pointer-events-none hidden md:block"
-      >
-        <CombIcon />
-      </motion.div>
-
-      <div className="absolute bottom-[20%] right-[8%] pointer-events-none hidden md:block">
-        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" className="text-gold opacity-10">
-          <polygon points="50,15 90,85 10,85" stroke="currentColor" strokeWidth="1" />
-        </svg>
-      </div>
+        animate={{ y: [0, 18, 0], rotate: [0, -12, 0], scale: [1, 0.96, 1] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-[28%] right-[8%] w-20 h-20 rounded-full border border-gold/10 border-b-gold/25 pointer-events-none hidden md:block z-10"
+      />
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute top-[18%] right-[15%] w-32 h-32 border border-gold/10 pointer-events-none hidden lg:block z-10"
+      />
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-cream flex flex-col items-center justify-center h-full pt-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="flex flex-col items-center"
         >
-          {/* Header Sub-tag */}
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gold/10 border border-gold/30 text-gold text-[9px] sm:text-xs font-semibold uppercase tracking-widest mb-6">
-            <Sparkles className="w-3 h-3" />
+          {/* Tagline */}
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-gold/15 border border-gold/30 text-gold text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] mb-6">
             Where Style Meets Confidence
           </span>
 
@@ -107,14 +70,34 @@ export default function Hero() {
           </h1>
 
           {/* Subheading tag */}
-          <p className="font-sans text-xs sm:text-sm md:text-base uppercase tracking-widest text-gold font-medium mb-6">
+          <p className="font-sans text-xs sm:text-sm md:text-base uppercase tracking-[0.2em] text-gold font-bold mb-6">
             Luxury Grooming • Beauty • Bridal • Tattoos
           </p>
 
           {/* Body Sub-text */}
-          <p className="font-sans text-xs sm:text-sm md:text-base text-cream/70 max-w-xl mb-10 font-light leading-relaxed">
+          <p className="font-sans text-xs sm:text-sm md:text-base text-cream/80 max-w-xl mb-8 font-light leading-relaxed">
             Premium Unisex Salon & Tattoo Studio in Annojiguda. Crafted for those who appreciate high-end aesthetics, luxury care, and custom artistry.
           </p>
+
+          {/* Trust Badges - Emojis replaced with Gold Lucide Icons */}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-10 max-w-3xl">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/60 border border-gold/10 backdrop-blur-xs">
+              <Star className="w-4 h-4 fill-gold text-gold" />
+              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">4.9 Rating</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/60 border border-gold/10 backdrop-blur-xs">
+              <MapPin className="w-4 h-4 text-gold" />
+              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Annojiguda</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/60 border border-gold/10 backdrop-blur-xs">
+              <Award className="w-4 h-4 text-gold" />
+              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Professional Stylists</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/60 border border-gold/10 backdrop-blur-xs">
+              <Clock className="w-4 h-4 text-gold" />
+              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Open 9 AM – 10 PM</span>
+            </div>
+          </div>
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, MapPin, Phone } from "lucide-react";
+import { MessageCircle, MapPin, Phone, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -28,9 +28,11 @@ export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "#home" },
     { name: "Services", href: "#services" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "Offers", href: "#offers" },
     { name: "Gallery", href: "#gallery" },
     { name: "Reviews", href: "#reviews" },
-    { name: "Location", href: "#location" },
+    { name: "About Us", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -53,7 +55,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-charcoal text-cream border-t border-gold/15 pt-16 pb-8 relative overflow-hidden">
+    <footer className="bg-primary text-cream border-t border-gold/15 pt-16 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           
@@ -78,7 +80,7 @@ export default function Footer() {
             <h4 className="font-serif text-sm font-bold tracking-widest uppercase mb-6 text-gold">
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 flex flex-col">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -103,6 +105,12 @@ export default function Footer() {
                 <a href="tel:+918522942128" className="text-xs text-cream/70 hover:text-gold font-light transition-colors">
                   +91 8522942128
                 </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Clock className="w-4 h-4 text-gold flex-shrink-0" />
+                <span className="text-xs text-cream/70 font-light">
+                  9:00 AM – 10:00 PM (Daily)
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-gold flex-shrink-0" />

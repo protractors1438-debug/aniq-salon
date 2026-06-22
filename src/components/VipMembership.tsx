@@ -2,81 +2,134 @@
 
 import Image from "next/image";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { Crown, Sparkles, Check, MessageCircle } from "lucide-react";
+import { Crown, Sparkles, Check, MessageCircle, Barcode } from "lucide-react";
 import React, { useRef } from "react";
 
-function Card3D({ src, alt }: { src: string; alt: string }) {
+function FrontCard({ src }: { src: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
-  // Map motion values to degrees of rotation
   const rotateX = useTransform(y, [-100, 100], [15, -15]);
   const rotateY = useTransform(x, [-100, 100], [-15, 15]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left - width / 2;
-    const mouseY = e.clientY - rect.top - height / 2;
+    const mouseX = e.clientX - rect.left - rect.width / 2;
+    const mouseY = e.clientY - rect.top - rect.height / 2;
     x.set(mouseX);
     y.set(mouseY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
   };
 
   return (
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="relative w-full aspect-[1.58/1] rounded-2xl overflow-hidden shadow-2xl border border-gold/25 cursor-grab active:cursor-grabbing group transition-shadow duration-300 hover:shadow-gold/10"
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className="relative w-full aspect-[1.58/1] rounded-2xl overflow-hidden shadow-2xl border border-gold/30 cursor-grab active:cursor-grabbing group hover:shadow-gold/15 transition-shadow duration-300"
     >
-      {/* Glossy reflection overlay */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          transform: "translateZ(20px)",
-        }}
-      />
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, 40vw"
-        unoptimized
-      />
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <Image src={src} alt="ANIQ VIP Card Front" fill className="object-cover" sizes="40vw" unoptimized />
+    </motion.div>
+  );
+}
+
+function BackCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [15, -15]);
+  const rotateY = useTransform(x, [-100, 100], [-15, 15]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left - rect.width / 2;
+    const mouseY = e.clientY - rect.top - rect.height / 2;
+    x.set(mouseX);
+    y.set(mouseY);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className="relative w-full aspect-[1.58/1] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-secondary-black via-primary to-secondary-black border border-gold/30 p-5 flex flex-col justify-between cursor-grab active:cursor-grabbing group hover:shadow-gold/15 transition-shadow duration-300"
+    >
+      {/* Glossy reflection */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      {/* Gold Card Borders Frame */}
+      <div className="absolute inset-2 border border-gold/15 rounded-xl pointer-events-none" />
+      <div className="absolute inset-3 border border-gold/5 rounded-lg pointer-events-none" />
+
+      {/* Top Section */}
+      <div className="relative z-10 flex justify-between items-center border-b border-gold/10 pb-2">
+        <div className="flex items-center gap-1.5">
+          <Crown className="w-4 h-4 text-gold" />
+          <span className="font-serif text-[10px] tracking-[0.25em] font-bold text-gold uppercase">ANIQ ELITE CLUB</span>
+        </div>
+        <span className="text-[7px] tracking-widest text-gold/70 font-semibold uppercase">MEMBERSHIP CARD</span>
+      </div>
+
+      {/* Middle Section (Privileges) */}
+      <div className="relative z-10 my-2 px-1">
+        <ul className="space-y-1 text-[8px] sm:text-[9px] text-cream/90 font-medium">
+          <li className="flex items-center gap-1.5">
+            <Check className="w-2.5 h-2.5 text-gold flex-shrink-0" />
+            <span>15% Discount (Monday–Friday)</span>
+          </li>
+          <li className="flex items-center gap-1.5">
+            <Check className="w-2.5 h-2.5 text-gold flex-shrink-0" />
+            <span>10% Discount (Weekend)</span>
+          </li>
+          <li className="flex items-center gap-1.5">
+            <Check className="w-2.5 h-2.5 text-gold flex-shrink-0" />
+            <span>20% Discount (Tuesday & Friday)</span>
+          </li>
+          <li className="flex items-center gap-1.5">
+            <Check className="w-2.5 h-2.5 text-gold flex-shrink-0" />
+            <span>Exclusive Birthday Benefits</span>
+          </li>
+          <li className="flex items-center gap-1.5">
+            <Check className="w-2.5 h-2.5 text-gold flex-shrink-0" />
+            <span>Marriage Anniversary Special Privileges</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="relative z-10 flex justify-between items-end pt-2 border-t border-gold/10">
+        <div>
+          <span className="text-[6px] text-gold/50 block tracking-widest font-semibold">MEMBER NO.</span>
+          <span className="font-mono text-[9px] text-cream font-bold tracking-wider">AQ - 8522 9421 28</span>
+        </div>
+        <div className="flex flex-col items-end">
+          <Barcode className="w-8 h-4 text-gold opacity-65" />
+          <span className="text-[5px] text-gold/40 block mt-0.5 uppercase">T&C APPLY</span>
+        </div>
+      </div>
     </motion.div>
   );
 }
 
 export default function VipMembership() {
   const privileges = [
-    "Flat 15% OFF on all hair, skin, and grooming services for 1 year.",
-    "1 Complimentary Luxury Hair Spa & Face Cleanup upon enrollment.",
-    "Priority VIP booking with zero waiting times and dedicated lounge access.",
-    "Direct booking access to senior stylists and master tattoo artists.",
-    "Exclusive Birthday & Anniversary discounts of 25% OFF.",
-    "Fully transferable privileges to up to 2 immediate family members.",
+    "15% Discount on all grooming services valid Monday to Friday.",
+    "10% Discount on premium treatments and beauty packages during Weekends.",
+    "Special 20% Discount on haircuts and tattoo consultations every Tuesday & Friday.",
+    "Complimentary birthday benefits, treatments, and custom surprises.",
+    "Exclusive anniversary specials, including double reward points and gift vouchers.",
   ];
 
   const whatsappUrl = "https://wa.me/918522942128?text=Hi%20ANIQ%20Salon%20Annojiguda,%20I'm%20interested%20in%20becoming%20a%20VIP%20Member.%20Could%20you%20share%20the%20details?";
 
   return (
-    <section id="offers" className="py-20 bg-charcoal text-cream relative overflow-hidden border-t border-gold/15">
-      {/* Decorative Gold Elements */}
+    <section id="offers" className="py-20 bg-primary text-cream relative overflow-hidden border-t border-gold/15">
+      {/* Background vector glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -125,7 +178,7 @@ export default function VipMembership() {
                   <div className="mt-0.5 p-0.5 bg-gold/15 rounded-full border border-gold/30 text-gold flex-shrink-0">
                     <Check className="w-3.5 h-3.5" />
                   </div>
-                  <p className="text-xs sm:text-sm text-cream/80 font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-beige/90 font-light leading-relaxed">
                     {privilege}
                   </p>
                 </div>
@@ -140,7 +193,7 @@ export default function VipMembership() {
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-gold hover:bg-gold/90 text-primary font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-lg shadow-gold/10 cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
-                Inquire About VIP Membership
+                Get VIP Membership
               </a>
             </div>
           </motion.div>
@@ -158,15 +211,15 @@ export default function VipMembership() {
               <span className="text-[9px] uppercase tracking-widest text-gold/75 font-semibold block mb-2 text-center lg:text-left">
                 VIP CARD - FRONT
               </span>
-              <Card3D src="/assets/vip-card-front.png" alt="ANIQ VIP Card Front" />
+              <FrontCard src="/assets/vip-card-front.png" />
             </div>
 
-            {/* Back Card */}
+            {/* Redesigned HTML/CSS Back Card */}
             <div className="w-full max-w-md transform transition-transform duration-500 hover:scale-[1.02]">
               <span className="text-[9px] uppercase tracking-widest text-gold/75 font-semibold block mb-2 text-center lg:text-left">
-                VIP CARD - BACK
+                VIP CARD - BACK (REDESIGNED)
               </span>
-              <Card3D src="/assets/vip-card-back.png" alt="ANIQ VIP Card Back" />
+              <BackCard />
             </div>
           </motion.div>
 

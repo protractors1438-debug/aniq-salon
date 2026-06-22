@@ -76,7 +76,7 @@ export default function Reviews() {
   };
 
   return (
-    <section id="reviews" className="py-20 bg-cream/30 relative overflow-hidden border-t border-gold/15">
+    <section id="reviews" className="py-20 bg-primary relative overflow-hidden border-t border-gold/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -84,34 +84,34 @@ export default function Reviews() {
           <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
             CLIENT REVIEWS
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-cream uppercase tracking-wide">
             Loved by Customers Across Annojiguda
           </h2>
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
         {/* Global Google Rating Stats */}
-        <div className="flex flex-col items-center justify-center gap-1.5 mb-12">
-          <div className="flex gap-0.5 text-gold">
+        <div className="flex flex-col items-center justify-center gap-2 mb-12">
+          <div className="flex gap-1 text-gold">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+              <Star key={i} className="w-5 h-5 fill-gold text-gold" />
             ))}
           </div>
-          <p className="font-serif text-lg font-bold text-primary">
-            4.9 / 5.0 Stars
+          <p className="font-serif text-2xl font-bold text-cream tracking-wide">
+            4.9★ / 5.0 Rating
           </p>
-          <p className="text-[9px] uppercase tracking-widest text-primary/50 font-bold">
+          <p className="text-[10px] uppercase tracking-widest text-gold font-bold">
             Based on 120+ Google Reviews
           </p>
         </div>
 
         {/* Carousel Container */}
-        <div className="relative max-w-3xl mx-auto px-2 sm:px-12 min-h-[280px] flex items-center justify-center">
+        <div className="relative max-w-3xl mx-auto px-2 sm:px-12 min-h-[300px] flex items-center justify-center">
           
           {/* Arrow Buttons */}
           <button
             onClick={slidePrev}
-            className="absolute left-0 sm:left-4 z-20 p-2.5 bg-charcoal hover:bg-gold text-cream hover:text-primary transition-all duration-300 border border-gold/15 focus:outline-none cursor-pointer"
+            className="absolute left-0 sm:left-4 z-20 p-2.5 bg-secondary-black hover:bg-gold text-gold hover:text-primary transition-all duration-300 border border-gold/20 focus:outline-none cursor-pointer"
             aria-label="Previous review"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -119,7 +119,7 @@ export default function Reviews() {
 
           <button
             onClick={slideNext}
-            className="absolute right-0 sm:right-4 z-20 p-2.5 bg-charcoal hover:bg-gold text-cream hover:text-primary transition-all duration-300 border border-gold/15 focus:outline-none cursor-pointer"
+            className="absolute right-0 sm:right-4 z-20 p-2.5 bg-secondary-black hover:bg-gold text-gold hover:text-primary transition-all duration-300 border border-gold/20 focus:outline-none cursor-pointer"
             aria-label="Next review"
           >
             <ChevronRight className="w-4 h-4" />
@@ -134,14 +134,14 @@ export default function Reviews() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="bg-white border border-gold/15 p-8 sm:p-12 shadow-xl text-center relative max-w-2xl mx-auto flex flex-col items-center"
+                className="bg-secondary-black border border-gold/20 p-8 sm:p-12 shadow-2xl text-center relative max-w-2xl mx-auto flex flex-col items-center"
               >
                 {/* Decorative borders */}
                 <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-gold/25" />
                 <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-gold/25" />
 
                 {/* Quote Icon */}
-                <Quote className="w-8 h-8 text-gold/15 fill-gold/5 mb-4" />
+                <Quote className="w-8 h-8 text-gold/20 fill-gold/5 mb-4" />
 
                 {/* Rating Stars */}
                 <div className="flex gap-0.5 text-gold mb-4">
@@ -151,7 +151,7 @@ export default function Reviews() {
                 </div>
 
                 {/* Review Text */}
-                <p className="text-xs sm:text-sm text-primary/80 font-light leading-relaxed mb-6 italic">
+                <p className="text-xs sm:text-sm text-cream/90 font-light leading-relaxed mb-6 italic">
                   &ldquo;{reviews[currentIndex].content}&rdquo;
                 </p>
 
@@ -159,7 +159,7 @@ export default function Reviews() {
                 <div className="w-6 h-[1px] bg-gold mb-4" />
 
                 {/* Author */}
-                <h4 className="font-serif text-sm font-bold text-primary">
+                <h4 className="font-serif text-sm font-bold text-cream">
                   {reviews[currentIndex].author}
                 </h4>
                 <span className="text-[9px] tracking-widest uppercase text-gold font-bold mt-1">

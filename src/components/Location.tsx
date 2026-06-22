@@ -9,7 +9,7 @@ export default function Location() {
   const whatsappUrl = "https://wa.me/918522942128?text=Hi%20ANIQ%20Salon%20Annojiguda,%20I%20would%20like%20to%20book%20an%20appointment.";
 
   return (
-    <section id="location" className="py-20 bg-ivory relative overflow-hidden border-t border-gold/15">
+    <section id="location" className="py-20 bg-secondary-black text-cream relative overflow-hidden border-t border-gold/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -17,7 +17,7 @@ export default function Location() {
           <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
             FIND US
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary uppercase tracking-wide">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-cream uppercase tracking-wide">
             Visit ANIQ Salon Annojiguda
           </h2>
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
@@ -33,7 +33,7 @@ export default function Location() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="bg-charcoal text-cream p-8 border border-gold/15 shadow-2xl h-full flex flex-col justify-between relative overflow-hidden"
+              className="bg-primary text-cream p-8 border border-gold/15 shadow-2xl h-full flex flex-col justify-between relative overflow-hidden"
             >
               {/* Corner borders */}
               <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-gold/20" />
@@ -46,7 +46,7 @@ export default function Location() {
                 
                 {/* Location Item */}
                 <div className="flex gap-4 items-start mb-6">
-                  <div className="p-3 bg-primary border border-gold/15 text-gold flex-shrink-0">
+                  <div className="p-3 bg-secondary-black border border-gold/15 text-gold flex-shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
@@ -61,7 +61,7 @@ export default function Location() {
 
                 {/* Timing Item */}
                 <div className="flex gap-4 items-start mb-6">
-                  <div className="p-3 bg-primary border border-gold/15 text-gold flex-shrink-0">
+                  <div className="p-3 bg-secondary-black border border-gold/15 text-gold flex-shrink-0">
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
@@ -69,14 +69,14 @@ export default function Location() {
                       Opening Hours
                     </h4>
                     <p className="text-xs text-cream/70 leading-relaxed font-light">
-                      Open Every Day: 9:00 AM – 9:00 PM
+                      Open Every Day: 9:00 AM – 10:00 PM
                     </p>
                   </div>
                 </div>
 
                 {/* Phone Item */}
                 <div className="flex gap-4 items-start mb-6">
-                  <div className="p-3 bg-primary border border-gold/15 text-gold flex-shrink-0">
+                  <div className="p-3 bg-secondary-black border border-gold/15 text-gold flex-shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
@@ -132,7 +132,7 @@ export default function Location() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
               {/* Outer gold border accent */}
-              <div className="absolute inset-3 border border-gold/25 pointer-events-none z-10" />
+              <div className="absolute inset-3 border border-gold/25 pointer-events-none z-10 animate-pulse" />
             </motion.div>
           </div>
 

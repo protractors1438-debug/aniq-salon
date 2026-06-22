@@ -1,178 +1,256 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Scissors, Sparkles, Heart, Gem, Palette, MessageCircle } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Scissors, Sparkles, Heart, Gem, Palette, User, ChevronDown, MessageCircle, Crown, Award } from "lucide-react";
 
-type ServiceBlock = {
+type ServiceItem = {
+  name: string;
+  price: string;
+};
+
+type ServiceCategory = {
   id: string;
-  category: string;
   title: string;
-  description: string;
-  startingPrice: string;
   icon: React.ReactNode;
-  image: string;
+  items: ServiceItem[];
 };
 
 export default function Services() {
-  const services: ServiceBlock[] = [
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const categories: ServiceCategory[] = [
     {
       id: "hair",
-      category: "Hair Services",
-      title: "Precision Hair Sculpting & Treatments",
-      description: "Elevate your look with custom haircuts, global color streaks, keratin treatments, and intensive Matrix or L'Oréal hair spas tailored by certified experts.",
-      startingPrice: "₹149",
+      title: "Hair Services",
       icon: <Scissors className="w-5 h-5 text-gold" />,
-      image: "/assets/gallery-2.jpg",
+      items: [
+        { name: "Men's Haircut (Any Style)", price: "₹149" },
+        { name: "Kids Haircut", price: "₹149" },
+        { name: "Ladies U / V / Straight Cut", price: "₹399" },
+        { name: "Ladies Multi Layer / Feather Cut", price: "₹599" },
+        { name: "Creative Layer Cut", price: "₹649" },
+        { name: "Blow Dry & Silk Press Styling", price: "₹399" },
+      ],
+    },
+    {
+      id: "hair-treatment",
+      title: "Hair Treatment",
+      icon: <Sparkles className="w-5 h-5 text-gold" />,
+      items: [
+        { name: "Basic Hair Spa", price: "₹799" },
+        { name: "L'Oréal Premium Hair Spa", price: "₹1399" },
+        { name: "Hair Spa (Matrix)", price: "₹699" },
+        { name: "Smoothening (Upto Shoulder)", price: "₹7999" },
+        { name: "Smoothening (Upto Mid-Back)", price: "₹9999" },
+        { name: "Keratin / Botox Therapy (Upto Shoulder)", price: "₹3999" },
+        { name: "Keratin Therapy (Upto Mid-Back)", price: "₹5999" },
+      ],
     },
     {
       id: "beauty",
-      category: "Beauty Services",
-      title: "Nourishing Skin Rituals & Waxing",
-      description: "Pamper your skin with fruit, whitening, or O3+ professional facials, deep cleanups, and clean, hygienic waxing and threading services.",
-      startingPrice: "₹149",
-      icon: <Sparkles className="w-5 h-5 text-gold" />,
-      image: "/assets/gallery-1.jpg",
+      title: "Beauty Services",
+      icon: <Award className="w-5 h-5 text-gold" />,
+      items: [
+        { name: "Regular Face Cleanup", price: "₹449" },
+        { name: "Gold / Silver Cleanup", price: "₹599" },
+        { name: "Regular Head Massage (20 Min)", price: "₹349" },
+        { name: "L'Oréal Head Massage", price: "₹699" },
+        { name: "Full Arms Waxing (Ladies)", price: "₹499" },
+        { name: "Full Legs Waxing (Ladies)", price: "₹999" },
+        { name: "Full Body Waxing (Ladies)", price: "₹2999" },
+      ],
+    },
+    {
+      id: "womens-services",
+      title: "Women's Services",
+      icon: <Heart className="w-5 h-5 text-gold" />,
+      items: [
+        { name: "Basic Facial (Fruit/Papaya)", price: "₹699" },
+        { name: "Pearl / Silver Facial", price: "₹999" },
+        { name: "Gold / Diamond Facial", price: "₹1499" },
+        { name: "Lotus Bridal Special Facial", price: "₹1699" },
+        { name: "O3+ Professional Facial", price: "₹2499" },
+        { name: "Ladies Threading (Eyebrows)", price: "₹50" },
+      ],
     },
     {
       id: "bridal",
-      category: "Bridal Services",
-      title: "Signature Bridal Glamour",
-      description: "Experience premium bridal makeovers, engagement styling, saree draping, and party makeup. Crafted to make you look radiant on your big day.",
-      startingPrice: "₹999",
-      icon: <Heart className="w-5 h-5 text-gold" />,
-      image: "/assets/bridal-makeup.png",
+      title: "Bridal Services",
+      icon: <Crown className="w-5 h-5 text-gold" />,
+      items: [
+        { name: "Bridal Makeover (Indoor)", price: "₹9999" },
+        { name: "Bridal Makeover (Outdoor)", price: "₹19999" },
+        { name: "Engagement Makeup", price: "₹3999" },
+        { name: "Party Makeup", price: "₹999" },
+        { name: "Saree Draping", price: "₹499" },
+        { name: "Complete Bridal Package", price: "₹7999" },
+      ],
     },
     {
       id: "nails",
-      category: "Nail Services",
-      title: "Luxury Extensions & Nail Art",
-      description: "Indulge in flawless gel or acrylic nail extensions, custom 3D art, French overlay styling, and premium polish finishes with absolute care.",
-      startingPrice: "₹99",
+      title: "Nail Services",
       icon: <Gem className="w-5 h-5 text-gold" />,
-      image: "/assets/transformation-1.webp",
+      items: [
+        { name: "Gel Nail Polish", price: "₹849" },
+        { name: "Gel Nail Extensions", price: "₹2499" },
+        { name: "Acrylic Nail Extensions", price: "₹2499" },
+        { name: "Special Nail Art (Per Finger)", price: "₹99" },
+        { name: "Basic Manicure", price: "₹299" },
+        { name: "Basic Pedicure", price: "₹399" },
+        { name: "Crystal Pedicure", price: "₹699" },
+        { name: "Luxury Pedicure", price: "₹999" },
+      ],
     },
     {
-      id: "tattoo",
-      category: "Tattoo Services",
-      title: "Bespoke Permanent Ink Tattoos",
-      description: "Express your story with highly detailed, safe, and sterile custom tattoos. Designed in our private zone by experienced resident artists.",
-      startingPrice: "₹999",
+      id: "tattoos",
+      title: "Tattoo Services",
       icon: <Palette className="w-5 h-5 text-gold" />,
-      image: "/assets/gallery-5.jpg",
+      items: [
+        { name: "Custom Black & Grey Tattoo", price: "Starting at ₹999" },
+        { name: "Color Ink Tattoo", price: "Starting at ₹1200" },
+        { name: "Minimalist Line Art Tattoo", price: "Starting at ₹1500" },
+        { name: "Premium Cover-up Tattoo", price: "Starting at ₹1800" },
+        { name: "Tattoo Touch-up Work", price: "Starting at ₹999" },
+      ],
+    },
+    {
+      id: "men",
+      title: "Men's Grooming",
+      icon: <User className="w-5 h-5 text-gold" />,
+      items: [
+        { name: "Men's Haircut (Any Style)", price: "₹149" },
+        { name: "Shaving / Beard Grooming", price: "₹149" },
+        { name: "Men's Premium Hair Spa", price: "₹799" },
+        { name: "Men's Detan (Face)", price: "₹249" },
+        { name: "L'Oréal Hair Colouring", price: "₹999" },
+      ],
+    },
+    {
+      id: "special-packages",
+      title: "Special Packages",
+      icon: <Sparkles className="w-5 h-5 text-gold" />,
+      items: [
+        { name: "Elite Grooming Deal (Boys)", price: "₹199" },
+        { name: "Luxe Makeover Deal (Girls)", price: "₹449" },
+        { name: "Complete Grooming Package (Men)", price: "₹999" },
+        { name: "Special Hair Treatment Combo", price: "₹2499" },
+        { name: "VIP Couple Salon Ritual", price: "₹4999" },
+      ],
     },
   ];
+
+  const handleToggle = (categoryId: string) => {
+    setActiveCategory(activeCategory === categoryId ? null : categoryId);
+  };
 
   const getWhatsAppLink = (title: string) => {
     return `https://wa.me/918522942128?text=Hi%20ANIQ%20Salon,%20I%20would%20like%20to%20book%20an%20appointment%20for%20${encodeURIComponent(title)}.`;
   };
 
   return (
-    <section id="services" className="py-20 bg-ivory relative overflow-hidden">
-      {/* Decorative background grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,168,106,0.05),transparent_50%)]" />
+    <section id="services" className="py-20 bg-primary relative overflow-hidden border-t border-gold/15">
+      {/* Background vector rings */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <span className="text-[10px] uppercase tracking-widest text-gold font-semibold block mb-2">
-            Services
+        <div className="text-center mb-16">
+          <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
+            SERVICES & CATALOGUE
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-cream uppercase tracking-wide">
             Curated Beauty & Styling Rituals
           </h2>
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
-        {/* Alternating Layout List */}
-        <div className="space-y-24 md:space-y-36">
-          {services.map((service, index) => {
-            const isImageLeft = index % 2 === 0;
+        {/* Categories Grid with Stagger Reveal */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {categories.map((category, index) => {
+            const isActive = activeCategory === category.id;
 
             return (
-              <div 
-                key={service.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className={`bg-secondary-black border ${
+                  isActive ? "border-gold shadow-lg shadow-gold/15" : "border-gold/15"
+                } p-5 transition-all duration-300 relative flex flex-col justify-between`}
               >
-                {/* Image Column */}
-                <motion.div
-                  initial={{ opacity: 0, x: isImageLeft ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8 }}
-                  className={`lg:col-span-6 relative aspect-[4/3] w-full overflow-hidden border border-gold/15 shadow-xl bg-charcoal ${
-                    isImageLeft ? "lg:order-1" : "lg:order-2"
-                  }`}
-                >
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    unoptimized
-                    className="object-cover hover:scale-103 transition-transform duration-700"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                  {/* Subtle inner gold frame */}
-                  <div className="absolute inset-4 border border-gold/15 pointer-events-none" />
-                </motion.div>
+                {/* Decorative gold highlights */}
+                <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-gold/20" />
+                <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-gold/20" />
 
-                {/* Content Column */}
-                <motion.div
-                  initial={{ opacity: 0, x: isImageLeft ? 40 : -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8 }}
-                  className={`lg:col-span-6 flex flex-col justify-center ${
-                    isImageLeft ? "lg:order-2" : "lg:order-1"
-                  }`}
-                >
-                  {/* Category & Premium Icon */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-charcoal text-gold border border-gold/10">
-                      {service.icon}
+                <div>
+                  {/* Header & Icon Trigger (NO Category Images) */}
+                  <button
+                    onClick={() => handleToggle(category.id)}
+                    className="w-full flex items-center justify-between py-2 cursor-pointer text-left focus:outline-none"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 bg-primary border border-gold/25 text-gold flex-shrink-0">
+                        {category.icon}
+                      </div>
+                      <h3 className="font-serif text-base font-bold text-cream uppercase tracking-wider transition-colors duration-300 hover:text-gold">
+                        {category.title}
+                      </h3>
                     </div>
-                    <span className="text-[10px] uppercase tracking-widest text-gold font-bold">
-                      {service.category}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-primary mb-4 leading-tight">
-                    {service.title}
-                  </h3>
-
-                  {/* Divider Line */}
-                  <div className="w-10 h-[1px] bg-gold mb-5" />
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-primary/75 leading-relaxed font-light mb-6">
-                    {service.description}
-                  </p>
-
-                  {/* Price info & CTA */}
-                  <div className="flex items-center justify-between border-t border-gold/15 pt-5 mt-2">
-                    <div>
-                      <span className="text-[9px] uppercase tracking-widest text-primary/50 font-bold block">
-                        Starting Price
-                      </span>
-                      <span className="font-serif text-lg font-bold text-gold">
-                        {service.startingPrice}
-                      </span>
-                    </div>
-
-                    <a
-                      href={getWhatsAppLink(service.title)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-5 py-3 bg-charcoal hover:bg-gold text-white hover:text-primary font-bold text-[10px] uppercase tracking-widest transition-all duration-300 border border-charcoal hover:border-gold cursor-pointer"
+                    <motion.div
+                      animate={{ rotate: isActive ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-gold"
                     >
-                      <MessageCircle className="w-3.5 h-3.5 fill-current" />
-                      Book Now
-                    </a>
-                  </div>
-                </motion.div>
-              </div>
+                      <ChevronDown className="w-5 h-5" />
+                    </motion.div>
+                  </button>
+                </div>
+
+                {/* Accordion Expansion Panel */}
+                <AnimatePresence initial={false}>
+                  {isActive && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pt-4 space-y-3.5 border-t border-gold/10 mt-3">
+                        {category.items.map((item, idx) => (
+                          <div key={idx} className="flex justify-between items-end gap-2 py-1.5 border-b border-gold/5 group">
+                            <span className="text-xs sm:text-sm font-sans font-medium text-cream/90 group-hover:text-gold transition-colors duration-300">
+                              {item.name}
+                            </span>
+                            {/* Gold Dotted divider line */}
+                            <div className="flex-1 border-b border-dotted border-gold/25 mx-2 mb-1" />
+                            <span className="text-xs sm:text-sm font-serif font-bold text-gold">
+                              {item.price}
+                            </span>
+                          </div>
+                        ))}
+
+                        {/* WhatsApp CTA inside accordion */}
+                        <div className="pt-4 flex justify-center">
+                          <a
+                            href={getWhatsAppLink(category.title)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-2.5 bg-gold hover:bg-gold/90 text-primary font-bold text-[10px] uppercase tracking-widest transition-all duration-300 shadow-md shadow-gold/15 cursor-pointer w-full justify-center"
+                          >
+                            <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                            Book {category.title}
+                          </a>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             );
           })}
         </div>

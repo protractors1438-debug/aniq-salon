@@ -14,7 +14,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const sections = ["home", "services", "offers", "portfolio", "gallery", "about", "reviews", "contact"];
+      const sections = ["home", "services", "offers", "gallery", "about", "reviews", "contact"];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -37,10 +37,9 @@ export default function Navbar() {
     { name: "Home", href: "#home", id: "home" },
     { name: "Services", href: "#services", id: "services" },
     { name: "Offers", href: "#offers", id: "offers" },
-    { name: "Portfolio", href: "#portfolio", id: "portfolio" },
     { name: "Gallery", href: "#gallery", id: "gallery" },
-    { name: "About Us", href: "#about", id: "about" },
     { name: "Reviews", href: "#reviews", id: "reviews" },
+    { name: "About Us", href: "#about", id: "about" },
     { name: "Contact", href: "#contact", id: "contact" },
   ];
 
@@ -51,8 +50,8 @@ export default function Navbar() {
       id="navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-charcoal/95 backdrop-blur-md border-b border-gold/15 py-2.5 shadow-xl"
-          : "bg-charcoal/85 backdrop-blur-sm py-4 border-b border-white/5"
+          ? "bg-secondary-black/95 backdrop-blur-md border-b border-gold/15 py-2.5 shadow-xl"
+          : "bg-secondary-black/80 backdrop-blur-xs py-4 border-b border-gold/5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,13 +72,13 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[11px] tracking-widest uppercase font-medium transition-all duration-300 relative py-1 hover:text-gold ${
-                  activeSection === link.id ? "text-gold font-semibold" : "text-cream/80"
+                className={`text-[11px] tracking-[0.2em] uppercase font-semibold transition-all duration-300 relative py-1 hover:text-gold ${
+                  activeSection === link.id ? "text-gold" : "text-beige/80"
                 }`}
               >
                 {link.name}
@@ -96,7 +95,7 @@ export default function Navbar() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold hover:bg-gold/90 text-primary font-bold text-[10px] uppercase tracking-widest transition-all duration-300 shadow-md shadow-gold/10 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold hover:bg-gold/90 text-primary font-bold text-[10px] uppercase tracking-widest transition-all duration-300 shadow-lg shadow-gold/20 cursor-pointer"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               Book Appointment
@@ -107,7 +106,7 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-cream hover:text-gold transition-colors duration-300 focus:outline-none cursor-pointer"
+              className="p-2 text-beige hover:text-gold transition-colors duration-300 focus:outline-none cursor-pointer"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -118,13 +117,13 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-charcoal/98 backdrop-blur-lg flex flex-col justify-center items-center transition-all duration-500 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-primary/98 backdrop-blur-lg flex flex-col justify-center items-center transition-all duration-500 lg:hidden ${
           isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
         <button
           onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-6 right-6 text-cream hover:text-gold p-2"
+          className="absolute top-6 right-6 text-beige hover:text-gold p-2"
           aria-label="Close menu"
         >
           <X className="w-8 h-8" />
@@ -137,7 +136,7 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
               className={`text-lg font-serif tracking-widest uppercase transition-colors ${
-                activeSection === link.id ? "text-gold" : "text-cream hover:text-gold"
+                activeSection === link.id ? "text-gold" : "text-beige hover:text-gold"
               }`}
             >
               {link.name}

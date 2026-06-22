@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import BrandsWeUse from "@/components/BrandsWeUse";
 import Services from "@/components/Services";
 import Transformations from "@/components/Transformations";
-import PriceList from "@/components/PriceList";
 import VipMembership from "@/components/VipMembership";
 import StudentOffers from "@/components/StudentOffers";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -25,7 +24,6 @@ export default function Home() {
         <BrandsWeUse />
         <Services />
         <Transformations />
-        <PriceList />
         <VipMembership />
         <StudentOffers />
         <WhyChooseUs />

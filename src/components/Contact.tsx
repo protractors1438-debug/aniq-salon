@@ -51,7 +51,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-cream/30 relative overflow-hidden border-t border-gold/15">
+    <section id="contact" className="py-20 bg-primary relative overflow-hidden border-t border-gold/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -59,7 +59,7 @@ export default function Contact() {
           <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
             GET IN TOUCH
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary uppercase tracking-wide">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-cream uppercase tracking-wide">
             Connect With ANIQ Salon
           </h2>
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
@@ -78,32 +78,32 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               whileHover={{ y: -6 }}
-              className={`bg-white p-8 border border-gold/15 shadow-xl transition-all duration-300 relative group flex flex-col justify-between items-center text-center cursor-pointer ${method.color}`}
+              className={`bg-secondary-black p-8 border border-gold/15 shadow-2xl transition-all duration-300 relative group flex flex-col justify-between items-center text-center cursor-pointer ${method.color}`}
             >
               {/* Decorative Corner borders */}
-              <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-gold/0 group-hover:border-gold/20 transition-all duration-300" />
-              <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-gold/0 group-hover:border-gold/20 transition-all duration-300" />
+              <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-gold/0 group-hover:border-gold/30 transition-all duration-300" />
+              <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-gold/0 group-hover:border-gold/30 transition-all duration-300" />
               
               {/* Top accent border */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-gold transition-colors duration-300" />
               
               {/* Icon */}
-              <div className="mb-6 p-4 bg-cream/30 border border-gold/10 group-hover:bg-charcoal group-hover:border-gold/20 transition-all duration-300">
+              <div className="mb-6 p-4 bg-primary border border-gold/15 group-hover:bg-gold group-hover:border-gold/25 transition-all duration-300 text-gold group-hover:text-primary">
                 {method.icon}
               </div>
 
               {/* Name */}
-              <h3 className="font-serif text-base font-bold text-primary mb-2 group-hover:text-gold transition-colors duration-300">
+              <h3 className="font-serif text-base font-bold text-cream mb-2 group-hover:text-gold transition-colors duration-300">
                 {method.name}
               </h3>
 
               {/* Detail */}
-              <p className="text-xs text-primary/70 mb-6 font-light">
+              <p className="text-xs text-beige/80 mb-6 font-light">
                 {method.detail}
               </p>
 
               {/* Action */}
-              <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-gold font-bold group-hover:text-primary transition-colors duration-300">
+              <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-gold font-bold group-hover:text-cream transition-colors duration-300">
                 {method.action}
                 <ArrowUpRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
               </span>

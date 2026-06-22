@@ -2,24 +2,22 @@
 
 @theme {
   --color-primary: #0B0B0B;
-  --color-charcoal: #161616;
-  --color-beige: #E8DCCB;
-  --color-cream: #F5EBDD;
+  --color-secondary-black: #171717;
   --color-gold: #C9A86A;
   --color-muted-gold: #A88445;
-  --color-ivory: #FAF5ED;
+  --color-beige: #E8DCCB;
 
   --font-serif: var(--font-playfair), serif;
   --font-sans: var(--font-inter), sans-serif;
 }
 
 :root {
-  --background: #FAF5ED; /* Soft Cream */
-  --foreground: #0B0B0B; /* Rich Black */
+  --background: #0B0B0B; /* Primary Black */
+  --foreground: #E8DCCB; /* Dark Beige */
 }
 
 html {
-  scroll-smooth: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -35,7 +33,7 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF5ED;
+  background: #0B0B0B;
 }
 ::-webkit-scrollbar-thumb {
   background: #C9A86A;

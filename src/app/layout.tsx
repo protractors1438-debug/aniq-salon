@@ -110,7 +110,7 @@ export default function RootLayout({
         "Sunday"
       ],
       "opens": "09:00",
-      "closes": "21:00"
+      "closes": "22:00"
     },
     "sameAs": [
       "https://www.instagram.com/aniqsalon_annojiguda"
