@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aniqsalon-annojiguda.vercel.app/sitemap.xml

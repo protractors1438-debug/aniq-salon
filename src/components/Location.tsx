@@ -17,8 +17,9 @@ export default function Location() {
           <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
             FIND US
           </span>
+          {/* H2 SEO Heading */}
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-cream uppercase tracking-wide">
-            Visit ANIQ Salon Annojiguda
+            Visit ANIQ Salon & Tattoos near NTPC Chowrasta
           </h2>
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
@@ -88,6 +89,13 @@ export default function Location() {
                     </a>
                   </div>
                 </div>
+              </div>
+
+              {/* Local Serving Area Info block */}
+              <div className="mb-6 pt-2 border-t border-gold/10 text-left">
+                <p className="text-[10px] text-cream/60 leading-relaxed font-light uppercase tracking-wider">
+                  * Proudly serving customers from Annojiguda, Pocharam, Ghatkesar, Narapally, Nagole, Uppal, and surrounding locations near NTPC Chowrasta.
+                </p>
               </div>
 
               {/* Action Buttons */}

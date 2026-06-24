@@ -64,38 +64,41 @@ export default function Hero() {
             Where Style Meets Confidence
           </span>
 
-          {/* Headline */}
-          <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-widest text-cream mb-4 uppercase">
+          {/* H1 Heading proper SEO hierarchy */}
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-widest text-cream mb-4 uppercase leading-tight">
             ANIQ SALON & TATTOOS
+            <span className="block text-xs sm:text-sm md:text-base tracking-[0.2em] text-gold font-bold mt-2 font-sans capitalize">
+              – Premium Salon in Annojiguda
+            </span>
           </h1>
 
           {/* Subheading tag */}
-          <p className="font-sans text-xs sm:text-sm md:text-base uppercase tracking-[0.2em] text-gold font-bold mb-6">
-            Luxury Grooming • Beauty • Bridal • Tattoos
+          <p className="font-sans text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.2em] text-cream/70 font-semibold mb-6">
+            Haircut Near Me • Hair Treatment • Bridal Makeup • Tattoo Studio in Annojiguda
           </p>
 
           {/* Body Sub-text */}
-          <p className="font-sans text-xs sm:text-sm md:text-base text-cream/80 max-w-xl mb-8 font-light leading-relaxed">
-            Premium Unisex Salon & Tattoo Studio in Annojiguda. Crafted for those who appreciate high-end aesthetics, luxury care, and custom artistry.
+          <p className="font-sans text-xs sm:text-sm md:text-base text-cream/80 max-w-2xl mb-8 font-light leading-relaxed">
+            Welcome to the Best Salon in Annojiguda. Crafted for those seeking a premium unisex salon in Hyderabad offering luxury hair spa treatments, custom tattoos, and signature bridal glow makeup.
           </p>
 
-          {/* Trust Badges - Emojis replaced with Gold Lucide Icons */}
+          {/* Trust Badges */}
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-10 max-w-3xl">
             <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/60 border border-gold/10 backdrop-blur-xs">
               <Star className="w-4 h-4 fill-gold text-gold" />
-              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">4.9 Rating</span>
+              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">4.9 Google Rating</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/60 border border-gold/10 backdrop-blur-xs">
               <MapPin className="w-4 h-4 text-gold" />
-              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Annojiguda</span>
+              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Salon Near NTPC Chowrasta</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/60 border border-gold/10 backdrop-blur-xs">
               <Award className="w-4 h-4 text-gold" />
-              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Professional Stylists</span>
+              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Certified Team</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/60 border border-gold/10 backdrop-blur-xs">
               <Clock className="w-4 h-4 text-gold" />
-              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Open 9 AM – 10 PM</span>
+              <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-cream/90 uppercase">Daily 9 AM – 10 PM</span>
             </div>
           </div>
 

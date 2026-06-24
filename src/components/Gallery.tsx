@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { useRef, useState } from "react";
 
@@ -36,7 +36,7 @@ export default function Gallery() {
     {
       type: "video",
       src: "/assets/salon-intro.mp4",
-      alt: "ANIQ Salon Video Tour",
+      alt: "Cinematic interior video tour of ANIQ Salon Annojiguda",
       caption: "Experience ANIQ (Video Tour)",
       aspectClass: "aspect-video",
       shapeClass: "rounded-t-[80px] rounded-b-[20px]",
@@ -44,15 +44,15 @@ export default function Gallery() {
     {
       type: "image",
       src: "/assets/gallery-1.jpg",
-      alt: "ANIQ Salon Pedicure Hair Wash Station",
+      alt: "Pedicure and hair wash station interior at ANIQ Salon Annojiguda",
       caption: "Pedicure & Hair Wash Lounge",
       aspectClass: "aspect-[4/5]",
       shapeClass: "rounded-[120px_20px_120px_20px]",
     },
     {
       type: "image",
-      src: "/assets/gallery-2.jpg",
-      alt: "ANIQ Salon Hair Styling Stations",
+      src: "/assets/hair-spa-annojiguda.jpg",
+      alt: "Hair Spa service styling stations in Annojiguda",
       caption: "Gold-backlit Styling Station",
       aspectClass: "aspect-square",
       shapeClass: "rounded-t-full",
@@ -60,7 +60,7 @@ export default function Gallery() {
     {
       type: "image",
       src: "/assets/gallery-3.jpg",
-      alt: "ANIQ Salon Kids Styling Mirror",
+      alt: "Kids styling mirrors at ANIQ Salon Annojiguda",
       caption: "Kids Grooming Mirrors",
       aspectClass: "aspect-[4/3]",
       shapeClass: "rounded-[20px_120px_20px_120px]",
@@ -68,23 +68,23 @@ export default function Gallery() {
     {
       type: "image",
       src: "/assets/gallery-4.jpg",
-      alt: "ANIQ Salon Kids Car Grooming Chair",
+      alt: "Kids toy car grooming chair at ANIQ Salon",
       caption: "Fun Kids Styling Space",
       aspectClass: "aspect-[4/5]",
       shapeClass: "rounded-b-full",
     },
     {
       type: "image",
-      src: "/assets/gallery-5.jpg",
-      alt: "ANIQ Salon Special Styling Tattoo Zone",
+      src: "/assets/tattoo-studio-annojiguda.jpg",
+      alt: "Bespoke tattoo studio zone at ANIQ Salon Annojiguda",
       caption: "Private Cut & Tattoo Zone",
       aspectClass: "aspect-[3/4]",
       shapeClass: "rounded-[100px_20px_100px_20px]",
     },
     {
       type: "image",
-      src: "/assets/exterior.jpg",
-      alt: "ANIQ Salon Exterior Entrance",
+      src: "/assets/aniq-salon-annojiguda-exterior.jpg",
+      alt: "Exterior front entrance and logo signboard of ANIQ Salon Annojiguda",
       caption: "Our Exterior Frontage",
       aspectClass: "aspect-video",
       shapeClass: "rounded-t-[100px] rounded-b-[20px]",
@@ -105,8 +105,9 @@ export default function Gallery() {
           <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
             PORTFOLIO
           </span>
+          {/* H2 SEO Heading */}
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-cream uppercase">
-            A Glimpse of Salon Luxury
+            Gallery & Styling Portfolio in Annojiguda
           </h2>
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>

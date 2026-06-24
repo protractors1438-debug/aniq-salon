@@ -12,6 +12,7 @@ type ServiceItem = {
 type ServiceCategory = {
   id: string;
   title: string;
+  seoTitle: string;
   icon: React.ReactNode;
   items: ServiceItem[];
 };
@@ -24,6 +25,7 @@ export default function Services() {
     {
       id: "hair",
       title: "Hair Services",
+      seoTitle: "Hair Services in Annojiguda",
       icon: <Scissors className="w-5 h-5 text-gold" />,
       items: [
         { name: "Men's Haircut (Any Style)", price: "₹149" },
@@ -37,6 +39,7 @@ export default function Services() {
     {
       id: "hair-treatment",
       title: "Hair Treatment",
+      seoTitle: "Hair Treatment in Annojiguda",
       icon: <Sparkles className="w-5 h-5 text-gold" />,
       items: [
         { name: "Basic Hair Spa", price: "₹799" },
@@ -51,6 +54,7 @@ export default function Services() {
     {
       id: "beauty",
       title: "Beauty Services",
+      seoTitle: "Beauty Services in Annojiguda",
       icon: <Award className="w-5 h-5 text-gold" />,
       items: [
         { name: "Regular Face Cleanup", price: "₹449" },
@@ -65,6 +69,7 @@ export default function Services() {
     {
       id: "womens-services",
       title: "Women's Services",
+      seoTitle: "Women's Services in Annojiguda",
       icon: <Heart className="w-5 h-5 text-gold" />,
       items: [
         { name: "Basic Facial (Fruit/Papaya)", price: "₹699" },
@@ -78,6 +83,7 @@ export default function Services() {
     {
       id: "bridal",
       title: "Bridal Services",
+      seoTitle: "Bridal Makeup Services",
       icon: <Crown className="w-5 h-5 text-gold" />,
       items: [
         { name: "Bridal Makeover (Indoor)", price: "₹9999" },
@@ -91,6 +97,7 @@ export default function Services() {
     {
       id: "nails",
       title: "Nail Services",
+      seoTitle: "Nail Art & Services in Annojiguda",
       icon: <Gem className="w-5 h-5 text-gold" />,
       items: [
         { name: "Gel Nail Polish", price: "₹849" },
@@ -106,6 +113,7 @@ export default function Services() {
     {
       id: "tattoos",
       title: "Tattoo Services",
+      seoTitle: "Tattoo Studio in Annojiguda",
       icon: <Palette className="w-5 h-5 text-gold" />,
       items: [
         { name: "Custom Black & Grey Tattoo", price: "Starting at ₹999" },
@@ -118,6 +126,7 @@ export default function Services() {
     {
       id: "men",
       title: "Men's Grooming",
+      seoTitle: "Men's Grooming in Annojiguda",
       icon: <User className="w-5 h-5 text-gold" />,
       items: [
         { name: "Men's Haircut (Any Style)", price: "₹149" },
@@ -130,6 +139,7 @@ export default function Services() {
     {
       id: "special-packages",
       title: "Special Packages",
+      seoTitle: "Special Packages in Annojiguda",
       icon: <Sparkles className="w-5 h-5 text-gold" />,
       items: [
         { name: "Elite Grooming Deal (Boys)", price: "₹199" },
@@ -204,10 +214,10 @@ export default function Services() {
             <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-gold/25" />
             <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-gold/25" />
 
-            <h3 className="font-serif text-base font-bold text-gold uppercase tracking-widest border-b border-gold/10 pb-2 mb-4 flex items-center gap-2">
+            <h2 className="font-serif text-base font-bold text-gold uppercase tracking-widest border-b border-gold/10 pb-2 mb-4 flex items-center gap-2">
               {currentCategory.icon}
-              {currentCategory.title}
-            </h3>
+              {currentCategory.seoTitle}
+            </h2>
 
             <div className="space-y-4">
               {currentCategory.items.map((item, idx) => (
@@ -266,9 +276,9 @@ export default function Services() {
                       <div className="p-2.5 bg-primary border border-gold/25 text-gold flex-shrink-0">
                         {category.icon}
                       </div>
-                      <h3 className="font-serif text-base font-bold text-cream uppercase tracking-wider transition-colors duration-300 hover:text-gold">
+                      <h2 className="font-serif text-base font-bold text-cream uppercase tracking-wider transition-colors duration-300 hover:text-gold">
                         {category.title}
-                      </h3>
+                      </h2>
                     </div>
                     <motion.div
                       animate={{ rotate: isActive ? 180 : 0 }}
@@ -291,6 +301,7 @@ export default function Services() {
                       className="overflow-hidden"
                     >
                       <div className="pt-4 space-y-3.5 border-t border-gold/10 mt-3">
+                        <span className="text-[9px] uppercase tracking-widest text-gold font-bold block mb-2">{category.seoTitle}</span>
                         {category.items.map((item, idx) => (
                           <div key={idx} className="flex justify-between items-end gap-2 py-1.5 border-b border-gold/5 group">
                             <span className="text-xs sm:text-sm font-sans font-medium text-cream/90 group-hover:text-gold transition-colors duration-300">

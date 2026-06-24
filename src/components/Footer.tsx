@@ -28,7 +28,6 @@ export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "#home" },
     { name: "Services", href: "#services" },
-    { name: "Pricing", href: "#pricing" },
     { name: "Offers", href: "#offers" },
     { name: "Gallery", href: "#gallery" },
     { name: "Reviews", href: "#reviews" },
@@ -134,7 +133,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -4, scale: 1.1 }}
-                  className="p-3 bg-white/5 border border-white/10 hover:border-gold/40 text-cream hover:text-gold rounded-none transition-colors duration-300 cursor-pointer"
+                  className="p-3 bg-white/5 border border-gold/15 hover:border-gold text-gold hover:bg-gold hover:text-primary rounded-none transition-all duration-300 cursor-pointer"
                   aria-label={social.label}
                 >
                   {social.icon}

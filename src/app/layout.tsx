@@ -18,35 +18,39 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aniqsalon-annojiguda.vercel.app"),
-  title: "ANIQ Salon Annojiguda | Premium Hair, Beauty & Grooming Salon",
+  title: "ANIQ Salon & Tattoos | Best Salon in Annojiguda Hyderabad",
   description:
-    "Experience premium hair, beauty, grooming, and tattoo services at ANIQ Salon Annojiguda. Rated 4.9★ by customers. Book instantly on WhatsApp.",
+    "ANIQ Salon & Tattoos is a premium unisex salon in Annojiguda offering haircuts, hair spa, keratin treatment, beauty services, bridal makeup, nails, tattoos and grooming services. Rated 4.9★ by customers. Open daily from 9 AM to 10 PM.",
   keywords: [
+    "Salon in Annojiguda",
     "Best Salon in Annojiguda",
     "Unisex Salon in Annojiguda",
+    "Hair Salon in Annojiguda",
     "Hair Spa in Annojiguda",
-    "Haircut Near NTPC Chowrasta",
     "Beauty Salon in Annojiguda",
-    "Keratin Treatment in Annojiguda",
     "Tattoo Studio in Annojiguda",
-    "ANIQ Salon Annojiguda",
-    "ANIQ Salon",
-    "Salon near Annojiguda",
-    "Bridal Makeup Annojiguda",
+    "Bridal Makeup in Annojiguda",
+    "Keratin Treatment in Annojiguda",
+    "Hair Smoothening in Annojiguda",
+    "Salon Near NTPC Chowrasta",
+    "Salon Near Me",
+    "Haircut Near Me",
+    "Best Beauty Salon Near Me",
+    "Nail Art in Annojiguda",
   ],
-  authors: [{ name: "ANIQ Salon Annojiguda" }],
+  authors: [{ name: "ANIQ Salon & Tattoos" }],
   openGraph: {
-    title: "ANIQ Salon Annojiguda | Premium Hair, Beauty & Grooming Salon",
+    title: "ANIQ Salon & Tattoos | Premium Salon in Annojiguda",
     description:
-      "Experience premium hair, beauty, grooming, and tattoo services at ANIQ Salon Annojiguda. Rated 4.9★ by customers. Book instantly on WhatsApp.",
+      "Premium Hair, Beauty, Bridal, Nail & Tattoo Services in Annojiguda. Rated 4.9★. Book instantly on WhatsApp.",
     url: "https://aniqsalon-annojiguda.vercel.app",
-    siteName: "ANIQ Salon Annojiguda",
+    siteName: "ANIQ Salon & Tattoos",
     images: [
       {
-        url: "/assets/interior.jpg",
+        url: "/assets/aniq-salon-annojiguda-exterior.jpg",
         width: 1200,
         height: 630,
-        alt: "ANIQ Salon Annojiguda Interior Ambience",
+        alt: "ANIQ Salon Annojiguda Premium Exterior Frontage",
       },
     ],
     locale: "en_IN",
@@ -54,10 +58,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ANIQ Salon Annojiguda | Premium Hair, Beauty & Grooming Salon",
+    title: "ANIQ Salon & Tattoos | Premium Salon in Annojiguda",
     description:
-      "Experience premium hair, beauty, grooming, and tattoo services at ANIQ Salon Annojiguda. Rated 4.9★ by customers. Book instantly on WhatsApp.",
-    images: ["/assets/interior.jpg"],
+      "Premium Hair, Beauty, Bridal, Nail & Tattoo Services in Annojiguda. Rated 4.9★. Book instantly on WhatsApp.",
+    images: ["/assets/aniq-salon-annojiguda-exterior.jpg"],
   },
   alternates: {
     canonical: "https://aniqsalon-annojiguda.vercel.app",
@@ -75,12 +79,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // JSON-LD local business schema
+  // JSON-LD local business schema including ratings and reviews
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
-    "name": "ANIQ Salon Annojiguda",
-    "image": "/assets/logo.jpg",
+    "name": "ANIQ Salon & Tattoos",
+    "image": "https://aniqsalon-annojiguda.vercel.app/assets/logo.jpg",
     "@id": "https://aniqsalon-annojiguda.vercel.app/#salon",
     "url": "https://aniqsalon-annojiguda.vercel.app",
     "telephone": "+918522942128",
@@ -95,8 +99,8 @@ export default function RootLayout({
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 17.4475,
-      "longitude": 78.6361
+      "latitude": 17.432889,
+      "longitude": 78.633519
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -114,6 +118,39 @@ export default function RootLayout({
     },
     "sameAs": [
       "https://www.instagram.com/aniqsalon_annojiguda"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "120"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Rahul Sharma"
+        },
+        "datePublished": "2026-05-15",
+        "reviewBody": "Liked the ambience and the professional staff. They are well experienced and did a great job with my haircut.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Priyanka Reddy"
+        },
+        "datePublished": "2026-06-01",
+        "reviewBody": "Excellent and professional service at affordable prices.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        }
+      }
     ]
   };
 

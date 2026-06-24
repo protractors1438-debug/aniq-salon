@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Star, Sparkles, Award, Heart, ShieldCheck, Users } from "lucide-react";
+import { Star, Sparkles, Award, Heart, Users } from "lucide-react";
 
 export default function About() {
   const stats = [
@@ -46,8 +46,8 @@ export default function About() {
               className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] w-full overflow-hidden border border-gold/25 shadow-2xl bg-secondary-black rounded-t-[180px] rounded-b-[20px]"
             >
               <Image
-                src="/assets/gallery-2.jpg"
-                alt="ANIQ Salon Annojiguda Premium Styling Stations"
+                src="/assets/hair-spa-annojiguda.jpg"
+                alt="Premium salon interior at ANIQ Salon Annojiguda"
                 fill
                 unoptimized
                 className="object-cover hover:scale-103 transition-transform duration-700"
@@ -70,13 +70,14 @@ export default function About() {
               <span className="text-[10px] uppercase tracking-widest text-gold font-bold block mb-2">
                 ABOUT OUR SALON
               </span>
+              {/* H2 SEO Heading */}
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-cream mb-6 leading-tight uppercase tracking-wide">
-                Annojiguda&apos;s Signature Beauty & Grooming Space
+                ANIQ Salon & Tattoos – Premium Salon in Annojiguda
               </h2>
               <div className="w-12 h-[1px] bg-gold mb-6" />
               
               <p className="text-xs sm:text-sm text-cream/70 mb-8 leading-relaxed font-light">
-                ANIQ Salon & Tattoos is a premium unisex salon in Annojiguda offering professional grooming, beauty, bridal, nail, hair treatment and tattoo services. Backed by the trusted ANIQ franchise standards, we focus on delivering personalized styling, quality imported products, certified professionals, and exceptional customer satisfaction in a private, high-end environment.
+                ANIQ Salon & Tattoos is a premium unisex salon in Annojiguda offering professional grooming, beauty, bridal, nail, hair treatment and tattoo services. Rated 4.9★ by customers, we serve clients from Annojiguda, Pocharam, Ghatkesar, Narapally, Nagole, Uppal, and nearby areas around NTPC Chowrasta. Backed by high franchise standards, we deliver tailored beauty consultations in a private, sterile, and luxurious environment.
               </p>
 
               {/* Stats Grid */}

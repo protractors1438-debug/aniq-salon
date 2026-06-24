@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, MapPin, ArrowUpRight } from "lucide-react";
+import { MessageCircle, MapPin, Phone, ArrowUpRight } from "lucide-react";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -25,11 +25,11 @@ function InstagramIcon({ className }: { className?: string }) {
 export default function Contact() {
   const contactMethods = [
     {
-      name: "Instagram",
-      detail: "@aniqsalon_annojiguda",
-      action: "Follow & DM Us",
-      url: "https://www.instagram.com/aniqsalon_annojiguda",
-      icon: <InstagramIcon className="w-6 h-6 text-gold" />,
+      name: "Call Us",
+      detail: "+91 8522942128",
+      action: "Call For Enquiry",
+      url: "tel:+918522942128",
+      icon: <Phone className="w-6 h-6 text-gold" />,
       color: "hover:border-gold/40",
     },
     {
@@ -48,6 +48,14 @@ export default function Contact() {
       icon: <MapPin className="w-6 h-6 text-gold" />,
       color: "hover:border-gold/40",
     },
+    {
+      name: "Instagram",
+      detail: "@aniqsalon_annojiguda",
+      action: "Follow & DM Us",
+      url: "https://www.instagram.com/aniqsalon_annojiguda",
+      icon: <InstagramIcon className="w-6 h-6 text-gold" />,
+      color: "hover:border-gold/40",
+    },
   ];
 
   return (
@@ -60,13 +68,13 @@ export default function Contact() {
             GET IN TOUCH
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-cream uppercase tracking-wide">
-            Connect With ANIQ Salon
+            Connect With ANIQ Salon & Tattoos Annojiguda
           </h2>
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {contactMethods.map((method, idx) => (
             <motion.a
               key={method.name}

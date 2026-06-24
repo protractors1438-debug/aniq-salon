@@ -85,7 +85,7 @@ export default function Reviews() {
             CLIENT REVIEWS
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-cream uppercase tracking-wide">
-            Loved by Customers Across Annojiguda
+            Customer Reviews in Annojiguda
           </h2>
           <div className="w-12 h-[1px] bg-gold mx-auto mt-3" />
         </div>
@@ -101,7 +101,7 @@ export default function Reviews() {
             4.9★ / 5.0 Rating
           </p>
           <p className="text-[10px] uppercase tracking-widest text-gold font-bold">
-            Based on 120+ Google Reviews
+            Rated by Happy Customers in Annojiguda
           </p>
         </div>
 
